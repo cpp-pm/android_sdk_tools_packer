@@ -5,8 +5,8 @@ cmake_minimum_required(VERSION 3.3)
 
 include("cmake/HunterGate.cmake")
 HunterGate(
-    URL "https://github.com/ruslo/hunter/archive/v0.20.40.tar.gz"
-    SHA1 "a500979296b4b6b1542a2881151ceb9c984f3e36"
+    URL "https://github.com/ruslo/hunter/archive/v0.20.57.tar.gz"
+    SHA1 "4f4608e1c11b67df417bfc5a68d4b5a86251b852"
 )
 
 project(android_sdk_tools_packer)
