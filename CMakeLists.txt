@@ -19,3 +19,24 @@ find_package(android_sdk_packer CONFIG REQUIRED)
 hunter_add_package(Android-SDK-Tools)
 file(GLOB x "${ANDROID-SDK-TOOLS_ROOT}/*")
 android_sdk_packer_unified_install(OBJECTS ${x} DESTINATION "tools")
+
+if(CMAKE_HOST_WIN32)
+  # TODO
+elseif(CMAKE_HOST_APPLE)
+  # TODO
+elseif(CMAKE_HOST_UNIX)
+  # Assuming Linux
+
+  foreach(arch armel x86_64 mips64el mipsel aarch64 i386)
+    install(
+        FILES "${ANDROID-SDK-TOOLS_ROOT}/qemu/linux-x86_64/qemu-system-${arch}"
+        DESTINATION "android-sdk/tools/qemu/linux-x86_64/"
+        PERMISSIONS
+            OWNER_WRITE
+            OWNER_READ GROUP_READ WORLD_READ
+            OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE
+    )
+  endforeach()
+else()
+  message(FATAL_ERROR "Unexpected host")
+endif()
