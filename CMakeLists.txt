@@ -23,7 +23,16 @@ android_sdk_packer_unified_install(OBJECTS ${x} DESTINATION "tools")
 if(CMAKE_HOST_WIN32)
   # TODO
 elseif(CMAKE_HOST_APPLE)
-  # TODO
+  foreach(arch armel x86_64 mips64el mipsel aarch64 i386)
+    install(
+        FILES "${ANDROID-SDK-TOOLS_ROOT}/qemu/darwin-x86_64/qemu-system-${arch}"
+        DESTINATION "android-sdk/tools/qemu/darwin-x86_64/"
+        PERMISSIONS
+            OWNER_WRITE
+            OWNER_READ GROUP_READ WORLD_READ
+            OWNER_EXECUTE GROUP_EXECUTE WORLD_EXECUTE
+    )
+  endforeach()
 elseif(CMAKE_HOST_UNIX)
   # Assuming Linux
 
